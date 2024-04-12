@@ -68,6 +68,19 @@ class DBConnection{
     
   }
   
+  deleteTodo(int id)async{
+    var db = await getDB();
+
+    db.delete(TABLE_NAME, where: "$TABLE_COLUMN_ID = ?", whereArgs: ['$id']);
+    
+  }
+  
+  updateTodo({required TodoModel todoModel, })async{
+    var db = await getDB();
+    db.update(TABLE_NAME, todoModel.toMap(), where: '$TABLE_COLUMN_ID =?', whereArgs: ['${todoModel.id}']);
+    
+    
+  }
   
   
 }

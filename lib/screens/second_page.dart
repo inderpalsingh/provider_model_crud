@@ -5,12 +5,24 @@ import 'package:provider_model_crud/provider/todo_provider.dart';
 
 class SecondPage extends StatelessWidget {
   
+  int? updateIndex;
+  bool isUpdate;
+  TodoModel? todoModelUpdate;
+  SecondPage({super.key, this.updateIndex,this.isUpdate = false, this.todoModelUpdate});
+  
   TextEditingController titleController = TextEditingController();
   TextEditingController descController = TextEditingController();
   
+  
+  
+ 
+
+  
+  
   @override
   Widget build(BuildContext context) {
-    
+    titleController.text = todoModelUpdate!.title;
+    descController.text = todoModelUpdate!.desc;
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -20,16 +32,16 @@ class SecondPage extends StatelessWidget {
           children: [
             TextField(
               controller: titleController,
-              decoration: InputDecoration(
-                labelText: 'Add title',
+              decoration: const InputDecoration(
+                labelText: 'title',
                 border: OutlineInputBorder()
               ),
             ),
             const SizedBox(height: 20),
             TextField(
               controller: descController,
-              decoration: InputDecoration(
-                labelText: 'Add desc',
+              decoration: const InputDecoration(
+                labelText: 'desc',
                   border: OutlineInputBorder()
               ),
             ),
@@ -39,13 +51,23 @@ class SecondPage extends StatelessWidget {
               children: [
                 ElevatedButton(onPressed: () {
                   
-                  if(titleController.text.isNotEmpty && descController.text.isNotEmpty){
+                  if(!isUpdate){
                     context.read<TodoProvider>().addTodos(
                         todoModel: TodoModel(title: titleController.text, desc: descController.text)
                     );
-                    Navigator.pop(context);
+                   
+                  }else{
+                    
+                    context.read<TodoProvider>().updateTodo(
+                        todoModel: TodoModel(
+                          id: todoModelUpdate!.id,
+                            title: titleController.text,
+                            desc: descController.text,
+                        )
+                    );
                   }
-                }, child: const Text('Add Note')),
+                  Navigator.pop(context);
+                }, child: Text(isUpdate ? 'Update Note' :'Add Note')),
 
                 ElevatedButton(onPressed: () {
                   Navigator.pop(context);

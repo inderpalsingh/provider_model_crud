@@ -31,9 +31,18 @@ class TodoProvider extends ChangeNotifier{
   }
 
 
-  void updateTodo(TodoModel todoModel, int id){}
+  void updateTodo({required TodoModel todoModel})async{
+    proDB.updateTodo(todoModel: todoModel);
+    _listTodos = await proDB.fetchAllTodos();
+    notifyListeners();
+    
+  }
   
-  void deleteTodo(int id){
+  void deleteTodo(int id)async{
+    proDB.deleteTodo(id);
+    _listTodos = await proDB.fetchAllTodos();
+    notifyListeners();
+    
     
   }
   

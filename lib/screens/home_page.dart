@@ -26,12 +26,16 @@ class _HomePageState extends State<HomePage> {
       body: Consumer<TodoProvider>(
         builder: (_, value, child) {
           var myData = value.fetchTodos();
-          return myData.isEmpty ? Center(child: Text('No Todo')):
+          return myData.isEmpty ? const Center(child: Text('No Todos..')):
           ListView.builder(
             itemCount: myData.length,
             itemBuilder: (context, index) {
               return ListTile(
-                leading: CircleAvatar(child: Text(myData[index].id.toString())),
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(
+                      builder: (context)=> SecondPage(updateIndex: index,isUpdate: true,todoModelUpdate: myData[index],)));
+                },
+                leading: CircleAvatar(child: Text(index.toString())),
                 title: Text(myData[index].title),
                 subtitle: Text(myData[index].desc),
                 trailing: IconButton(
