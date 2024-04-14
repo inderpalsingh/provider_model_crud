@@ -5,10 +5,11 @@ import 'package:provider_model_crud/provider/todo_provider.dart';
 
 class SecondPage extends StatelessWidget {
   
-  int? updateIndex;
+
   bool isUpdate;
   TodoModel? todoModelUpdate;
-  SecondPage({super.key, this.updateIndex,this.isUpdate = false, this.todoModelUpdate});
+  
+  SecondPage({super.key, this.isUpdate = false, this.todoModelUpdate});
   
   TextEditingController titleController = TextEditingController();
   TextEditingController descController = TextEditingController();
@@ -18,6 +19,9 @@ class SecondPage extends StatelessWidget {
   Widget build(BuildContext context) {
     titleController.text = todoModelUpdate!.title;
     descController.text = todoModelUpdate!.desc;
+    
+    
+    
     return Scaffold(
       body: Container(
         width: double.infinity,

@@ -32,8 +32,8 @@ class _HomePageState extends State<HomePage> {
             itemBuilder: (context, index) {
               return ListTile(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(
-                      builder: (context)=> SecondPage(updateIndex: index,isUpdate: true,todoModelUpdate: myData[index],)));
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (context)=> SecondPage(isUpdate: true,todoModelUpdate: myData[index])));
                 },
                 leading: CircleAvatar(child: Text(index.toString())),
                 title: Text(myData[index].title),
@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     context.read<TodoProvider>().deleteTodo(myData[index].id);
                   },
-                 icon: Icon(Icons.delete), color: Colors.red,),
+                 icon: const Icon(Icons.delete), color: Colors.red,),
               );
             },
           );
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context)=> SecondPage()));
         },
-        child: const Text('Notes'),
+        child: const Text('Add'),
       ),
     );
   }
