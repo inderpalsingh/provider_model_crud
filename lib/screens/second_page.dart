@@ -14,11 +14,6 @@ class SecondPage extends StatelessWidget {
   TextEditingController descController = TextEditingController();
   
   
-  
- 
-
-  
-  
   @override
   Widget build(BuildContext context) {
     titleController.text = todoModelUpdate!.title;
