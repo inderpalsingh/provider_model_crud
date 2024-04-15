@@ -17,8 +17,10 @@ class SecondPage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    titleController.text = todoModelUpdate!.title;
-    descController.text = todoModelUpdate!.desc;
+    if(todoModelUpdate !=null){
+      titleController.text = todoModelUpdate!.title;
+      descController.text = todoModelUpdate!.desc;
+    }
     
     
     
