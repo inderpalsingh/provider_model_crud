@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                       context, MaterialPageRoute(builder: (context)=> SecondPage(isUpdate: true,todoModelUpdate: myData[index])));
                 },
-                leading: CircleAvatar(child: Text(index.toString())),
+                leading: CircleAvatar(child: Text('${index + 1}')),
                 title: Text(myData[index].title),
                 subtitle: Text(myData[index].desc),
                 trailing: IconButton(
